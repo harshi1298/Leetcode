@@ -7,9 +7,10 @@ class Solution {
             char[] arr=strs[i].toCharArray();
             Arrays.sort(arr);
             String key = new String(arr);
-            List<String>list=mapp.getOrDefault(key,new ArrayList<>());
-            list.add(strs[i]);
-            mapp.put(key,list);
+            if(!mapp.containsKey(key)){
+                mapp.put(key,new ArrayList<>());
+            }
+            mapp.get(key).add(strs[i]);
         }
         for(Map.Entry<String,List<String>> entry :mapp.entrySet()){
             ans.add(entry.getValue());
